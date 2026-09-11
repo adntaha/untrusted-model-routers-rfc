@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Earlier today, on September 10th, Anthropic released a report documenting various use cases of Claude that they deemed illicit, in order to provide the wider community with examples of what they regularly have to moderate.
+Earlier today, on September 10th, Anthropic [released a report](www.anthropic.com/threat-intelligence-report-september-2026#gtg-16002-moonshot-serves-claude-instead-of-kimi-and-collects-exchanges-for-model-training) documenting various use cases of Claude that they deemed illicit, in order to provide the wider community with examples of what they regularly have to moderate.
 
 One very specific example is worrying: Chinese government employees, under the impression that they were chatting with Kimi on chinese servers, was actually conversing with Claude on US-soil servers, while discussing surveillance of domestic citizens and uploading PII.
 
@@ -36,7 +36,9 @@ Thus, the user encodes their request with the provider's public key, sends it th
 
 ## Conclusion
 
-These approaches are simple and are able to be implemented today with little additional overhead to existing infrastructure, and would be able to fulfil needs that we see in practice today. For additional safety, we would also recommend avoiding the user of a harness provided by the model router, such that none of their code is running on the user's device.
+To be clear, neither of these approaches would solve, in Anthropic's words, "distillation attacks," as these attackers would either strip the signature or mint their own private-public key pair and abstract away that security layer. The only existing approach that we believe would work for this issue is ZKP inference. However, this does solve the latter problems: Taobao model routers selling the user's data and injecting arbitrary commands into tool calls.
+If the model router is acting as a model provider, our hands are tied.
+These approaches are simple and are able to be implemented today with little additional overhead to existing infrastructure, and would be able to fulfil some of the needs that we see in practice today. For additional safety, we would also recommend avoiding the user of a harness provided by the model router, such that none of their code is running on the user's device.
 
 [^1]: Hanzhi et al. 2026, https://arxiv.org/abs/2604.08407
 
